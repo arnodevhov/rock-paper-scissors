@@ -12,3 +12,11 @@ function getComputerChoice() {
       return 'Unknown action';
   }
 }
+
+function getHumanChoice() {
+  let choice = prompt('Enter rock, paper or scissors');
+
+  return choice;
+}
+
+getHumanChoice();
