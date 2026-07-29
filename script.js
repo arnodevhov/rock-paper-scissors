@@ -8,8 +8,6 @@ function getComputerChoice() {
       return 'paper';
     case 2:
       return 'scissors';
-    default:
-      return 'Unknown action';
   }
 }
 
@@ -21,8 +19,7 @@ function getHumanChoice() {
 
 let humanScore = 0;
 let computerScore = 0;
-const humanSelection = getHumanChoice().toLowerCase();
-const computerSelection = getComputerChoice();
+let rounds = 5;
 
 function playRound(humanChoice, computerChoice) {
   if (
@@ -31,17 +28,33 @@ function playRound(humanChoice, computerChoice) {
     (humanChoice === 'scissors' && computerChoice === 'paper')
   ) {
     humanScore++;
-    alert(
-      `Score: ${humanScore} : ${computerScore} | You won: ${humanChoice} beats ${computerChoice}`
-    );
+    alert(`You won: ${humanChoice} beats ${computerChoice}`);
   } else if (humanChoice === computerChoice) {
     alert("It's a tie!");
   } else {
     computerScore++;
-    alert(
-      `Score: ${humanScore} : ${computerScore} | Computer won: ${computerChoice} beats ${humanChoice}`
-    );
+    alert(`Computer won: ${computerChoice} beats ${humanChoice}`);
   }
 }
 
-playRound(humanSelection, computerSelection);
+while (rounds > 0) {
+  const humanSelection = getHumanChoice().toLowerCase();
+  const computerSelection = getComputerChoice();
+
+  playRound(humanSelection, computerSelection);
+  rounds--;
+}
+
+function checkWinner() {
+  alert('Game over');
+
+  if (humanScore > computerScore) {
+    alert(`Human wins: ${humanScore}:${computerScore}`);
+  } else if (humanScore < computerScore) {
+    alert(`Computer wins: ${humanScore}:${computerScore}`);
+  } else {
+    alert(`It's a tie: ${humanScore}:${computerScore}`);
+  }
+}
+
+checkWinner();
